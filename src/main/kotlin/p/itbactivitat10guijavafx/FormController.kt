@@ -44,6 +44,16 @@ class FormController {
     @FXML
     private lateinit var errorMessage: Label
 
+    /**
+     * This method is called when the user clicks the next button. It calls the updateValues() method
+     * to update the view with the current question. It also calls the updateSelectedAnswers() method
+     * to update the selected answer in the view, if it exists.
+     * @author ulisescastell
+     * @author picuu
+     * @since 05/03/2024
+     * @see updateValues
+     * @see updateSelectedAnswers
+     */
     @FXML
     private fun onPreviousQuestion() {
         if (currentQuestion <= 1) return
@@ -55,6 +65,16 @@ class FormController {
         updateSelectedAnswers()
     }
 
+    /**
+     * This method is called when the user clicks the previous button. It calls the updateValues() method
+     * to update the view with the current question. It also calls the updateSelectedAnswers() method
+     * to update the selected answer in the view, if it exists.
+     * @author ulisescastell
+     * @author picuu
+     * @since 05/03/2024
+     * @see updateValues
+     * @see updateSelectedAnswers
+     */
     @FXML
     private fun onNextQuestion() {
         if (currentQuestion >= questions.size) return
@@ -66,6 +86,15 @@ class FormController {
         updateSelectedAnswers()
     }
 
+    /**
+     * This method is called when the user selects an answer. It updates the selectedAnswers map with the
+     * current question index and the selected answer. It also updates the punctuation of the current question
+     * based on the selected answer.
+     * @author ulisescastell
+     * @author picuu
+     * @since 05/03/2024
+     * @see Question.setPunctuation
+     */
     @FXML
     private fun onSelectAnswer() {
         val selectedAnswer = this.qToggleGroup.selectedToggle as RadioButton
@@ -73,8 +102,6 @@ class FormController {
 
         val question = this.questions[this.currentQuestion-1]
         val selectedAnswerIndex = selectedAnswer.id.substring(selectedAnswer.id.length-1).toInt()
-
-        println(selectedAnswerIndex)
 
         when (selectedAnswerIndex) {
             1 -> question.setPunctuation(10)
@@ -87,6 +114,17 @@ class FormController {
         this.resultInfo.isVisible = false
     }
 
+    /**
+     * This method is called when the user clicks the check answers button. It checks if the user has selected
+     * all the answers and then calculates the total punctuation. Based on the punctuation, it shows a message
+     * with the best destination for the user.
+     * @author ulisescastell
+     * @author picuu
+     * @since 05/03/2024
+     * @throws MissingAnswersException If the user has not selected all the answers
+     * @throws InvalidPunctuationException If the punctuation is not valid
+     * @see Question.getPunctuation
+     */
     @FXML
     private fun onCheckAnswers() {
         try {
@@ -95,8 +133,6 @@ class FormController {
 
             var totalPunctuation = 0
             this.questions.forEach { totalPunctuation += it.getPunctuation() }
-
-            println(totalPunctuation)
 
             val resultText: String
             when (totalPunctuation) {
@@ -127,6 +163,18 @@ class FormController {
         }
     }
 
+    /**
+     * This method is called by the onNextQuestion and onPreviousQuestion methods to update the view with
+     * the current question.
+     * @author ulisescastell
+     * @author picuu
+     * @since 05/03/2024
+     * @see Question.getText
+     * @see Question.getAnswer1
+     * @see Question.getAnswer2
+     * @see Question.getAnswer3
+     * @see Question.getAnswer4
+     */
     private fun updateValues() {
         this.questionText.text = this.questions[currentQuestion-1].getText()
         this.answer1.text = "a) " + this.questions[currentQuestion-1].getAnswer1()
@@ -135,6 +183,13 @@ class FormController {
         this.answer4.text = "d) " + this.questions[currentQuestion-1].getAnswer4()
     }
 
+    /**
+     * This method is called by the onNextQuestion and onPreviousQuestion methods to update the selected
+     * answer in the view.
+     * @author ulisescastell
+     * @author picuu
+     * @since 05/03/2024
+     */
     private fun updateSelectedAnswers() {
         this.answer1.isSelected = false
         this.answer2.isSelected = false
