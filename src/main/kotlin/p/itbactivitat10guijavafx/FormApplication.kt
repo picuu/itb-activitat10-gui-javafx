@@ -8,7 +8,7 @@ import javafx.stage.Stage
 class FormApplication : Application() {
     override fun start(stage: Stage) {
         val fxmlLoader = FXMLLoader(FormApplication::class.java.getResource("form-view.fxml"))
-        val scene = Scene(fxmlLoader.load(), 320.0, 240.0)
+        val scene = Scene(fxmlLoader.load(), 600.0, 325.0)
         stage.title = "Hello!"
         stage.scene = scene
         stage.show()
