@@ -9,7 +9,7 @@ class FormApplication : Application() {
     override fun start(stage: Stage) {
         val fxmlLoader = FXMLLoader(FormApplication::class.java.getResource("form-view.fxml"))
         val scene = Scene(fxmlLoader.load(), 600.0, 325.0)
-        stage.title = "Hello!"
+        stage.title = "Activitat 10: Interfícies Gràfiques d'Usuari - Ulises i Carlos"
         stage.scene = scene
         stage.show()
     }
