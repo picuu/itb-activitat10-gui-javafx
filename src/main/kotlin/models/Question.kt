@@ -6,11 +6,7 @@ class Question {
     private var answer2: String
     private var answer3: String
     private var answer4: String
-    private var userAnswer: Int
-    private var puntsResposta1: Int
-    private var puntsResposta2: Int
-    private var puntsResposta3: Int
-    private var puntsResposta4: Int
+    private var punctuation: Int
 
 
     constructor(text: String, answer1: String, answer2: String, answer3: String, answer4: String) {
@@ -19,11 +15,7 @@ class Question {
         this.answer2 = answer2
         this.answer3 = answer3
         this.answer4 = answer4
-        this.userAnswer = -1
-        this.puntsResposta1 = 10
-        this.puntsResposta2 = 20
-        this.puntsResposta3 = 30
-        this.puntsResposta4 = 40
+        this.punctuation = 0
     }
 
     fun getText(): String {
@@ -46,12 +38,12 @@ class Question {
         return this.answer4
     }
 
-    fun setUserAnswer(userAnswer: Int) {
-        this.userAnswer = userAnswer
+    fun getPunctuation(): Int {
+        return this.punctuation
     }
 
-    fun getUserAnswer(): Int {
-        return this.userAnswer
+    fun setPunctuation(puntuation: Int) {
+        this.punctuation = puntuation
     }
 
     override fun toString(): String {
@@ -59,8 +51,7 @@ class Question {
                 "\nAnswer 1: ${this.answer1}" +
                 "\nAnswer 2: ${this.answer2}" +
                 "\nAnswer 3: ${this.answer3}" +
-                "\nAnswer 4: ${this.answer4}" +
-                "\nUser answer: ${this.userAnswer}"
+                "\nAnswer 4: ${this.answer4}"
     }
 
 
